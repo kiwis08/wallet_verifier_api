@@ -2,7 +2,7 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - wallet_verifier_api (0.0.1):
+  - wallet_verifier_api (0.0.2):
     - Flutter
 
 DEPENDENCIES:
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
-  wallet_verifier_api: 4004fa59c9aa07a32e245c115ed8332f1202a419
+  wallet_verifier_api: efdc881f72d4a0e898ce35a083e653970147bcc3
 
 PODFILE CHECKSUM: 978dd492a93a8ef4ec2dc2b3631de447af34068a
 
