@@ -2,8 +2,8 @@ import Flutter
 import UIKit
 
 public class WalletVerifierApiPlugin: NSObject, FlutterPlugin {
-    
-    
+
+
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "wallet_verifier_api", binaryMessenger: registrar.messenger())
     let instance = WalletVerifierApiPlugin()
@@ -16,7 +16,6 @@ public class WalletVerifierApiPlugin: NSObject, FlutterPlugin {
       result("iOS " + UIDevice.current.systemVersion)
     case "verifyAge":
         WalletVerifierApiPluginModel.shared.verifyButtonTapped()
-      result(FlutterError(code: "HANDLE_ERROR", message: "method not implemented", details: nil))
     default:
       result(FlutterMethodNotImplemented)
     }
