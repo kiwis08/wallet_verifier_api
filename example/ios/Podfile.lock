@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - wallet_verifier_api (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - wallet_verifier_api (from `.symlinks/plugins/wallet_verifier_api/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  wallet_verifier_api:
+    :path: ".symlinks/plugins/wallet_verifier_api/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
+  wallet_verifier_api: 4004fa59c9aa07a32e245c115ed8332f1202a419
+
+PODFILE CHECKSUM: 978dd492a93a8ef4ec2dc2b3631de447af34068a
+
+COCOAPODS: 1.15.2
