@@ -15,7 +15,7 @@ final class WalletVerifierApiPluginModel {
 
     private var cachedSession: MobileDocumentReaderSession?
 
-    func verifyButtonTapped() {
+    func startVerification(elements: [MobileDriversLicenseDisplayRequest.Element]) {
         Task {
             // Check that the device supports mobile document reading.
             guard MobileDocumentReader.isSupported else {
@@ -25,8 +25,8 @@ final class WalletVerifierApiPluginModel {
             }
             
             do {
-                print("Verifying age")
-                try await self.verifyAge()
+                print("Verifying")
+                try await self.verifyAge(elements: elements)
             } catch MobileDocumentReaderError.cancelled {
                 print("User dismissed")
                 // The user dismissed the document reader user interface.
@@ -36,9 +36,9 @@ final class WalletVerifierApiPluginModel {
         }
     }
 
-    private func verifyAge() async throws {
+    private func verifyAge(elements: [MobileDriversLicenseDisplayRequest.Element]) async throws {
         // Create a driver's license display request containing the age over 21 element.
-        let request = MobileDriversLicenseDisplayRequest(elements: [.ageAtLeast(21)])
+        let request = MobileDriversLicenseDisplayRequest(elements: elements)
 
         // Perform the request using a previously cached reader session, if present.
         // If the cached session has expired, prepare the device for document reading again.

@@ -8,11 +8,10 @@ class MockWalletVerifierApiPlatform
     with MockPlatformInterfaceMixin
     implements WalletVerifierApiPlatform {
 
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  Future<void> verifyAge() {
+  Future<void> verifyAge(List<MobileDriversLicenseElement> elements,
+      {int? age}) {
     // TODO: implement verifyAge
     throw UnimplementedError();
   }
@@ -25,11 +24,11 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelWalletVerifierApi>());
   });
 
-  test('getPlatformVersion', () async {
+  test('verifyAge', () async {
     WalletVerifierApi walletVerifierApiPlugin = WalletVerifierApi();
     MockWalletVerifierApiPlatform fakePlatform = MockWalletVerifierApiPlatform();
     WalletVerifierApiPlatform.instance = fakePlatform;
 
-    expect(await walletVerifierApiPlugin.getPlatformVersion(), '42');
+    expect(() async => await walletVerifierApiPlugin.verifyAge([]), isA<void>());
   });
 }

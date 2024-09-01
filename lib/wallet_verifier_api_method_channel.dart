@@ -1,7 +1,16 @@
+import 'dart:core';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'wallet_verifier_api_platform_interface.dart';
+
+enum MobileDriversLicenseElement {
+  givenName,
+  familyName,
+  age,
+  ageAtLeast,
+}
 
 /// An implementation of [WalletVerifierApiPlatform] that uses method channels.
 class MethodChannelWalletVerifierApi extends WalletVerifierApiPlatform {
@@ -10,13 +19,20 @@ class MethodChannelWalletVerifierApi extends WalletVerifierApiPlatform {
   final methodChannel = const MethodChannel('wallet_verifier_api');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
-  }
-
-  @override
-  Future<void> verifyAge() async {
-    await methodChannel.invokeMethod<void>('verifyAge');
+  Future<void> verifyAge(List<MobileDriversLicenseElement> elements,
+      {int? age}) async {
+    final List<Map<String, dynamic>> elementData = elements.map((element) {
+      switch (element) {
+        case MobileDriversLicenseElement.givenName:
+          return {'type': 'givenName'};
+        case MobileDriversLicenseElement.familyName:
+          return {'type': 'familyName'};
+        case MobileDriversLicenseElement.age:
+          return {'type': 'age'};
+        case MobileDriversLicenseElement.ageAtLeast:
+          return {'type': 'ageAtLeast', 'age': age};
+      }
+    }).toList();
+    await methodChannel.invokeMethod<void>('verifyAge', {'elements': elementData});
   }
 }

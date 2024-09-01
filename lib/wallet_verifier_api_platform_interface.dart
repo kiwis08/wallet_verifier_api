@@ -23,11 +23,8 @@ abstract class WalletVerifierApiPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
-
-  Future<void> verifyAge() {
+  Future<void> verifyAge(List<MobileDriversLicenseElement> elements,
+      {int? age}) {
     throw UnimplementedError('verifyAge() has not been implemented.');
   }
 }

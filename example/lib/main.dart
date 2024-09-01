@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:wallet_verifier_api/wallet_verifier_api.dart';
+import 'package:wallet_verifier_api/wallet_verifier_api_method_channel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +32,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _walletVerifierApiPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      platformVersion = await _walletVerifierApiPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -60,7 +61,11 @@ class _MyAppState extends State<MyApp> {
               Text('Running on: $_platformVersion\n'),
               ElevatedButton(
                 onPressed: () {
-                  _walletVerifierApiPlugin.verifyAge();
+                  _walletVerifierApiPlugin.verifyAge([
+                    MobileDriversLicenseElement.givenName,
+                    MobileDriversLicenseElement.familyName,
+                    MobileDriversLicenseElement.ageAtLeast,
+                  ], age: 21);
                 },
                 child: const Text('Verify Age'),
               ),
