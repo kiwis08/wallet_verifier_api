@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'wallet_verifier_api'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'Verifier API Plugin for iOS Digital ID Verification'
   s.description      = <<-DESC
 Verifier API Plugin for iOS Digital ID Verification
