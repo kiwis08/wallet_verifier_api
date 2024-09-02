@@ -15,6 +15,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _walletVerifierApiPlugin = WalletVerifierApi();
 
+  bool? isSupported = null;
+
   @override
   void initState() {
     super.initState();
@@ -28,8 +30,20 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Verifier API Example'),
         ),
         body: Center(
-          child: Row(
+          child: Column(
             children: [
+              ElevatedButton(
+                onPressed: () async {
+                  final supported = await _walletVerifierApiPlugin.isSupported();
+                  setState(() {
+                    isSupported = supported;
+                  });
+                },
+                child: const Text('Is Supported'),
+              ),
+              Text('Is Supported: $isSupported\n'),
+
+
               ElevatedButton(
                 onPressed: () {
                   _walletVerifierApiPlugin.verifyAge([

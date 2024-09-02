@@ -13,6 +13,10 @@ class WalletVerifierApi {
     }
     return WalletVerifierApiPlatform.instance.verifyAge(elements, age: age);
   }
+
+  Future<bool> isSupported() {
+    return WalletVerifierApiPlatform.instance.isSupported();
+  }
 }
 
 

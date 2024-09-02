@@ -29,4 +29,9 @@ class MethodChannelWalletVerifierApi extends WalletVerifierApiPlatform {
     }).toList();
     await methodChannel.invokeMethod<void>('verifyAge', {'elements': elementData});
   }
+
+  @override
+  Future<bool> isSupported() async {
+    return await methodChannel.invokeMethod<bool>('isSupported') ?? false;
+  }
 }

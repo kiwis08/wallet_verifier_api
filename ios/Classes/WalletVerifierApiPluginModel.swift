@@ -14,9 +14,13 @@ final class WalletVerifierApiPluginModel {
     static let shared = WalletVerifierApiPluginModel()
 
     private var cachedSession: MobileDocumentReaderSession?
+    
+    func isSupported() -> Bool {
+        return MobileDocumentReader.isSupported
+    }
 
     func startVerification(elements: [MobileDriversLicenseDisplayRequest.Element]) throws {
-        guard MobileDocumentReader.isSupported else {
+        guard isSupported() else {
             // This device doesn't support the Verifier API.
             print("Device does not support Verifier API")
             throw WalletVerifierAPIError.notSupported

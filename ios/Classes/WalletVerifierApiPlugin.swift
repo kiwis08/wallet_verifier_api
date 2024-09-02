@@ -49,6 +49,8 @@ public class WalletVerifierApiPlugin: NSObject, FlutterPlugin {
                 print("returning error")
                 result(FlutterError(code: "INTERNAL_ERROR", message: error.localizedDescription, details: nil))
             }
+        case "isSupported":
+            result(WalletVerifierApiPluginModel.shared.isSupported())
         default:
             result(FlutterMethodNotImplemented)
         }

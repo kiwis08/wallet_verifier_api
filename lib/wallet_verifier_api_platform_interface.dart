@@ -28,4 +28,8 @@ abstract class WalletVerifierApiPlatform extends PlatformInterface {
       {int? age}) {
     throw UnimplementedError('verifyAge() has not been implemented.');
   }
+
+  Future<bool> isSupported() {
+    throw UnimplementedError('isSupported() has not been implemented.');
+  }
 }
