@@ -16,3 +16,6 @@
 ## 0.0.5
 - Add README.md
 - Refactor `MobileDriversLicenseElement` to another file
+
+## 0.0.6
+- Add basic `notSupported` error
