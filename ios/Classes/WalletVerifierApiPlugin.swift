@@ -42,8 +42,13 @@ public class WalletVerifierApiPlugin: NSObject, FlutterPlugin {
             }
             
             
-            WalletVerifierApiPluginModel.shared.startVerification(elements: requestElements)
-            result(nil)
+            do {
+                try WalletVerifierApiPluginModel.shared.startVerification(elements: requestElements)
+                result(nil)
+            } catch {
+                print("returning error")
+                result(FlutterError(code: "INTERNAL_ERROR", message: error.localizedDescription, details: nil))
+            }
         default:
             result(FlutterMethodNotImplemented)
         }
