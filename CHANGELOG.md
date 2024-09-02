@@ -9,3 +9,6 @@
 
 ## 0.0.3
 - Add missing `MobileDriversLicenseElement`: `familyName`, `givenName` and `age`
+
+## 0.0.4
+- Prepare for public release
