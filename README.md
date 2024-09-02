@@ -1,15 +1,82 @@
 # wallet_verifier_api
 
-Verifier API Plugin for iOS Digital ID Verification
+This plugin is a wrapper around the iOS Verifier API.
+You can learn more about the Verifier API [here](https://developer.apple.com/wallet/id-verifier/).
 
-## Getting Started
+This plugin is still in development and currently only supports display-only capabilities.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Requirements
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- iOS >=17.0
+
+## Usage
+
+First, add `wallet_verifier_api` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages).
+
+```yaml
+dependencies:
+  wallet_verifier_api: ^0.0.4
+```
+
+Then, import the library:
+
+```dart
+import 'package:wallet_verifier_api/wallet_verifier_api.dart';
+```
+
+## Example
+
+```dart
+
+import 'package:flutter/material.dart';
+import 'package:wallet_verifier_api/wallet_verifier_api.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _walletVerifierApiPlugin = WalletVerifierApi();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Verifier API Example'),
+        ),
+        body: Center(
+          child: Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  _walletVerifierApiPlugin.verifyAge([
+                    MobileDriversLicenseElement.givenName,
+                    MobileDriversLicenseElement.familyName,
+                    MobileDriversLicenseElement.ageAtLeast,
+                  ], age: 21);
+                },
+                child: const Text('Verify Age'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
 
