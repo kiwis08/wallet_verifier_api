@@ -22,3 +22,6 @@
 
 ## 0.0.7
 - feat: Add `isSupported` method
+
+## 0.0.8
+- Support iOS 13.0+

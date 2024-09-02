@@ -7,7 +7,9 @@ This plugin is still in development and currently only supports display-only cap
 
 ## Requirements
 
-- iOS >=17.0
+- iOS >=13.0*
+
+*While the plugin is compatible with iOS 13.0, the Verifier API is only available on iOS 17.0 and later. Any calls to the plugin (except for the `isSupported` method) will return a `UNSUPPORTED_IOS_VERSION` error below iOS 17.0.
 
 ## Usage
 
