@@ -1,5 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'mobile_drivers_license_element.dart';
 import 'wallet_verifier_api_method_channel.dart';
 
 abstract class WalletVerifierApiPlatform extends PlatformInterface {

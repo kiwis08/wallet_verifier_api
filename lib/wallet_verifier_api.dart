@@ -1,7 +1,7 @@
-
-import 'package:wallet_verifier_api/wallet_verifier_api_method_channel.dart';
-
+import 'mobile_drivers_license_element.dart';
 import 'wallet_verifier_api_platform_interface.dart';
+
+export 'mobile_drivers_license_element.dart';
 
 class WalletVerifierApi {
 
@@ -14,3 +14,5 @@ class WalletVerifierApi {
     return WalletVerifierApiPlatform.instance.verifyAge(elements, age: age);
   }
 }
+
+

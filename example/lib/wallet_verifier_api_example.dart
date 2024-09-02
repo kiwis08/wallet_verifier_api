@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:wallet_verifier_api/wallet_verifier_api.dart';
-import 'package:wallet_verifier_api/wallet_verifier_api_method_channel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Verifier API Example'),
         ),
         body: Center(
           child: Row(

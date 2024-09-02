@@ -3,14 +3,8 @@ import 'dart:core';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'mobile_drivers_license_element.dart';
 import 'wallet_verifier_api_platform_interface.dart';
-
-enum MobileDriversLicenseElement {
-  givenName,
-  familyName,
-  age,
-  ageAtLeast,
-}
 
 /// An implementation of [WalletVerifierApiPlatform] that uses method channels.
 class MethodChannelWalletVerifierApi extends WalletVerifierApiPlatform {
