@@ -8,6 +8,7 @@
 import Foundation
 import ProximityReader
 
+@available(iOS 17.0, *)
 @MainActor
 final class WalletVerifierApiPluginModel {
     

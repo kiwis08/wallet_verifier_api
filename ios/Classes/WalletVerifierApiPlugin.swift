@@ -12,47 +12,53 @@ public class WalletVerifierApiPlugin: NSObject, FlutterPlugin {
     }
     
     @MainActor public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        switch call.method {
-        case "verifyAge":
-            guard let args = call.arguments as? [String: Any],
-                  let elements = args["elements"] as? [[String: Any]] else {
-                result(FlutterError(code: "INVALID_ARGUMENT", message: "Invalid arguments", details: nil))
-                return
-            }
-            
-            var requestElements: [MobileDriversLicenseDisplayRequest.Element] = []
-            
-            for element in elements {
-                if let type = element["type"] as? String {
-                    switch type {
-                    case "givenName":
-                        requestElements.append(.givenName)
-                    case "familyName":
-                        requestElements.append(.familyName)
-                    case "age":
-                        requestElements.append(.age)
-                    case "ageAtLeast":
-                        if let age = element["age"] as? Int {
-                            requestElements.append(.ageAtLeast(age))
+        if #available(iOS 17.0, *) {
+            switch call.method {
+            case "verifyAge":
+                guard let args = call.arguments as? [String: Any],
+                      let elements = args["elements"] as? [[String: Any]] else {
+                    result(FlutterError(code: "INVALID_ARGUMENT", message: "Invalid arguments", details: nil))
+                    return
+                }
+                
+                var requestElements: [MobileDriversLicenseDisplayRequest.Element] = []
+                
+                for element in elements {
+                    if let type = element["type"] as? String {
+                        switch type {
+                        case "givenName":
+                            requestElements.append(.givenName)
+                        case "familyName":
+                            requestElements.append(.familyName)
+                        case "age":
+                            requestElements.append(.age)
+                        case "ageAtLeast":
+                            if let age = element["age"] as? Int {
+                                requestElements.append(.ageAtLeast(age))
+                            }
+                        default:
+                            break
                         }
-                    default:
-                        break
                     }
                 }
+                
+                do {
+                    try WalletVerifierApiPluginModel.shared.startVerification(elements: requestElements)
+                    result(nil)
+                } catch {
+                    result(FlutterError(code: "INTERNAL_ERROR", message: error.localizedDescription, details: nil))
+                }
+            case "isSupported":
+                result(WalletVerifierApiPluginModel.shared.isSupported())
+            default:
+                result(FlutterMethodNotImplemented)
             }
-            
-            
-            do {
-                try WalletVerifierApiPluginModel.shared.startVerification(elements: requestElements)
-                result(nil)
-            } catch {
-                print("returning error")
-                result(FlutterError(code: "INTERNAL_ERROR", message: error.localizedDescription, details: nil))
+        } else {
+            if call.method == "isSupported" {
+                result(false)
+            } else {
+                result(FlutterError(code: "UNSUPPORTED_IOS_VERSION", message: "iOS 17.0 or higher is required for this feature.", details: nil))
             }
-        case "isSupported":
-            result(WalletVerifierApiPluginModel.shared.isSupported())
-        default:
-            result(FlutterMethodNotImplemented)
         }
     }
 }

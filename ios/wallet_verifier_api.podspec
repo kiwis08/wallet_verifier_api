@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'wallet_verifier_api'
-  s.version          = '0.0.3'
+  s.version          = '0.0.8'
   s.summary          = 'Verifier API Plugin for iOS Digital ID Verification'
   s.description      = <<-DESC
 Verifier API Plugin for iOS Digital ID Verification
@@ -15,8 +15,8 @@ Verifier API Plugin for iOS Digital ID Verification
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '17.0'
-  s.ios.deployment_target = '17.0'
+  s.platform = :ios, '13.0'
+  s.ios.deployment_target = '13.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
