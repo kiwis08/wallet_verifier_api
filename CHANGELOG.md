@@ -19,3 +19,6 @@
 
 ## 0.0.6
 - Add basic `notSupported` error
+
+## 0.0.7
+- feat: Add `isSupported` method
